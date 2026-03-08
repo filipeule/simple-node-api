@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    container_name: orders-api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      MONGO_URI: mongodb://user:pass@mongodb:27017/ordersdb?authSource=admin
+      PORT: 3000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: ordersdb
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
