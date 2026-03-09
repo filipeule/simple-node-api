@@ -15,8 +15,6 @@ A ideia foi manter o projeto **simples, legível e fácil de rodar**, sem framew
 * Pino (logger)
 * MongoDB Driver oficial
 
----
-
 ## Estrutura do projeto
 
 A aplicação está organizada por responsabilidade, que ajuda a manter o código organizado e facilita futuras mudanças:
