@@ -14,6 +14,8 @@ A ideia foi manter o projeto **simples, legível e fácil de rodar**, sem framew
 * Docker / Docker Compose
 * Pino (logger)
 * MongoDB Driver oficial
+* SwaggerJS-DOC
+* Zod (validação)
 
 ## Estrutura do projeto
 
