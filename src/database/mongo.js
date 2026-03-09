@@ -12,6 +12,11 @@ export async function connect() {
   await client.connect()
   db = client.db("ordersdb")
 
+  await db.collection("orders").createIndex(
+    { orderId: 1 },
+    { unique: true }
+  )
+
   logger.info("connected to mongo database!")
 }
 

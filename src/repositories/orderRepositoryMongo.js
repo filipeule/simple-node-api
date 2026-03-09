@@ -16,9 +16,16 @@ export async function findById(orderId) {
 export async function create(order) {
   const db = getDb()
 
-  await db.collection("orders").insertOne(order)
+  try {
+    await db.collection("orders").insertOne(order)
+    return order
+  } catch (error) {
+    if (error.code === 11000) {
+      throw new Error("order already exists")
+    }
 
-  return order
+    throw error
+  }
 }
 
 export async function update(order) {

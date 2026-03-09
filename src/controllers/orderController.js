@@ -1,5 +1,6 @@
-import e from 'express'
 import * as orderService from '../services/orderService.js'
+import * as z from 'zod'
+import { createOrderSchema, updateOrderSchema } from '../schemas/orderSchema.js'
 
 export async function list(req, res) {
   try {
@@ -36,7 +37,15 @@ export async function create(req, res) {
   try {
     const body = req.body
 
-    const order = await orderService.create(body)
+    const result = createOrderSchema.safeParse(body)
+    if (!result.success) {
+      return res.status(400).json({
+        error: 'invalid request payload',
+        details: z.treeifyError(result.error),
+      })
+    }
+
+    const order = await orderService.create(result.data)
 
     return res.status(201).json(order)
   } catch (error) {
@@ -51,7 +60,15 @@ export async function update(req, res) {
     const { orderId } = req.params
     const body = req.body
 
-    const order = await orderService.update(orderId, body)
+    const result = updateOrderSchema.safeParse(body)
+    if (!result.success) {
+      return res.status(400).json({
+        error: 'invalid request payload',
+        details: z.treeifyError(result.error),
+      })
+    }
+
+    const order = await orderService.update(orderId, result.data)
 
     if (!order) {
       return res.status(404).json({
