@@ -2,7 +2,7 @@
 
 Uma API simples em **Node.js + Express + MongoDB** para gerenciamento de pedidos.
 
-O objetivo desse projeto é demonstrar uma API REST organizada em camadas (**controller, service e repository**), com persistência em MongoDB e execução simplificada via **Docker Compose**.
+O objetivo desse projeto é demonstrar uma API REST organizada em camadas (**controller, service e repository**), com persistência em MongoDB, autenticação com JWT e execução simplificada via **Docker Compose**.
 
 A ideia foi manter o projeto **simples, legível e fácil de rodar**, sem frameworks pesados.
 
@@ -16,6 +16,8 @@ A ideia foi manter o projeto **simples, legível e fácil de rodar**, sem framew
 * MongoDB Driver oficial
 * SwaggerJS-DOC
 * Zod (validação)
+* Bcrypt
+* JWT
 
 ## Estrutura do projeto
 
@@ -23,13 +25,15 @@ A aplicação está organizada por responsabilidade, que ajuda a manter o códig
 
 ```
 src/
- ├─ controllers/     # Camada HTTP (req/res)
- ├─ database/        # Conexão com o MongoDB
- ├─ repositories/    # Acesso ao banco de dados
- ├─ routers/         # Definição das rotas da API
- ├─ services/        # Regras de negócio e transformação de dados
- ├─ app.js           # Configuração do Express e middlewares
- └─ server.js        # Inicialização da aplicação
+ ├─ controllers/      # Camada HTTP (req/res)
+ ├─ services/         # Regras de negócio
+ ├─ repositories/     # Acesso ao banco de dados
+ ├─ database/         # Conexão com o banco de dados
+ ├─ routers/          # Definição das rotas da API
+ ├─ middleware/       # Middlewares (auth, error handling, etc.)
+ ├─ docs/             # Configuração e definição do Swagger/OpenAPI
+ ├─ app.js            # Configuração do Express e middlewares
+ └─ server.js         # Inicialização da aplicação
 ```
 
 ## Executando o projeto
