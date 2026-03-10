@@ -1,15 +1,24 @@
-import swaggerJsdoc from "swagger-jsdoc"
+import swaggerJsdoc from 'swagger-jsdoc'
 
 const options = {
   definition: {
-    openapi: "3.0.0",
+    openapi: '3.0.0',
     info: {
-      title: "Orders API",
-      version: "1.0.0",
-      description: "Simple orders API"
-    }
+      title: 'Orders API',
+      version: '1.0.0',
+      description: 'Simple orders API',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
-  apis: ["./src/routers/*.js"]
+  apis: ['./src/routers/*.js'],
 }
 
 const swaggerSpec = swaggerJsdoc(options)

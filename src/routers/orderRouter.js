@@ -8,9 +8,15 @@ const router = express.Router()
  * /orders:
  *   get:
  *     summary: List all orders
+ *     tags:
+ *       - Orders
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Returns all orders
+ *       401:
+ *         description: Unauthorized
  */
 router.get('/', orderController.list)
 
@@ -21,6 +27,8 @@ router.get('/', orderController.list)
  *     summary: Get an order by ID
  *     tags:
  *       - Orders
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: orderId
@@ -31,6 +39,8 @@ router.get('/', orderController.list)
  *     responses:
  *       200:
  *         description: Order found
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Order not found
  */
@@ -41,6 +51,10 @@ router.get('/:orderId', orderController.get)
  * /orders:
  *   post:
  *     summary: Create a new order
+ *     tags:
+ *       - Orders
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -68,6 +82,8 @@ router.get('/:orderId', orderController.get)
  *     responses:
  *       201:
  *         description: Order created
+ *       401:
+ *         description: Unauthorized
  */
 router.post('/', orderController.create)
 
@@ -78,6 +94,8 @@ router.post('/', orderController.create)
  *     summary: Update an existing order
  *     tags:
  *       - Orders
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: orderId
@@ -108,6 +126,8 @@ router.post('/', orderController.create)
  *     responses:
  *       200:
  *         description: Order updated
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Order not found
  */
@@ -120,6 +140,8 @@ router.put('/:orderId', orderController.update)
  *     summary: Delete an order
  *     tags:
  *       - Orders
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: orderId
@@ -130,6 +152,8 @@ router.put('/:orderId', orderController.update)
  *     responses:
  *       204:
  *         description: Order deleted
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Order not found
  */
