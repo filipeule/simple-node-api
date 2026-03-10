@@ -2,7 +2,7 @@
 
 Uma API simples em **Node.js + Express + MongoDB** para gerenciamento de pedidos.
 
-O objetivo desse projeto é demonstrar uma API REST organizada em camadas (**controller, service e repository**), com persistência em MongoDB, autenticação com JWT e execução simplificada via **Docker Compose**.
+O objetivo desse projeto é demonstrar uma API REST organizada em camadas (**controller, service e repository**), com persistência em MongoDB, autenticação com e execução simplificada via **Docker Compose**.
 
 A ideia foi manter o projeto **simples, legível e fácil de rodar**, sem frameworks pesados.
 
@@ -40,7 +40,16 @@ src/
 
 A forma mais simples de rodar o projeto é usando Docker.
 
-Basta executar:
+Basta:
+
+Configurar o arquivo .env de acordo com o exemplo:
+
+```
+cp .env.example .env
+nano .env
+```
+
+Executar o docker compose:
 
 ```
 docker compose up --build
@@ -52,7 +61,7 @@ Isso irá:
 2. Construir a imagem da API
 3. Iniciar a aplicação
 
-A API ficará disponível em:
+A API, por padrão, ficará disponível em:
 
 ```
 http://localhost:3000
